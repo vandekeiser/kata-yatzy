@@ -35,13 +35,6 @@ public class Roll {
         return diceRolls().boxed().collect(toSet()).size() == 1;
     }
 
-    public int count(int needle) {
-        return Collections.frequency(
-            diceRolls().boxed().collect(toList()),
-            needle
-        );
-    }
-
     public Optional<Pair> highestPair() {
         return pairs().max(comparing(Pair::value));
     }
@@ -106,6 +99,7 @@ public class Roll {
 
 
 
+
     private static TwoPairs twoPairs0(Set<Pair> pairs) {
         if(pairs.size() != 2) throw new AssertionError(
             "Should only be passed 2 pairs, was: " + pairs
@@ -130,6 +124,13 @@ public class Roll {
 
         return countPerRoll.entrySet().stream().filter(
             e -> e.getValue() >= frequencyThreshold
+        );
+    }
+
+    private int count(int needle) {
+        return Collections.frequency(
+            diceRolls().boxed().collect(toList()),
+            needle
         );
     }
 

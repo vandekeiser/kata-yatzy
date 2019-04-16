@@ -28,17 +28,17 @@ public class RollTest {
     }
 
     @Test
-    public void count() {
+    public void weightedCount() {
         assertThat(
-            roll(1,1,2,1,1).count(1)
+            roll(1,1,2,1,1).weightedCount(1)
         ).isEqualTo(4);
 
         assertThat(
-            roll(1,3,2,1,5).count(1)
+            roll(1,3,2,1,5).weightedCount(1)
         ).isEqualTo(2);
 
         assertThat(
-            roll(4,3,2,4,5).count(1)
+            roll(4,3,2,4,5).weightedCount(0)
         ).isEqualTo(0);
     }
 
