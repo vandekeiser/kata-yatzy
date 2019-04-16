@@ -42,23 +42,6 @@ public class Roll {
         );
     }
 
-
-
-
-    private IntStream diceRolls() {
-        return IntStream.of(d1, d2, d3, d4, d5);
-    }
-
-    private void validate() {
-        diceRolls().forEach(this::validate);
-    }
-
-    private void validate(int dieRoll) {
-        if(dieRoll<1 || dieRoll>6) throw new IllegalArgumentException(String.format(
-            "Expected parameter dieRoll in [1,6], was %d", dieRoll
-        ));
-    }
-
     public Optional<Pair> highestPair() {
         return pairs().max(comparing(Pair::value));
     }
@@ -73,16 +56,6 @@ public class Roll {
                 "There were %d pairs in the roll! (shouldn't ever be > 2)"
             ));
         }
-    }
-
-    private static TwoPairs twoPairs0(Set<Pair> pairs) {
-        if(pairs.size() != 2) throw new AssertionError(
-            "Should only be passed 2 pairs, was: " + pairs
-        );
-        Iterator<Pair> it = pairs.iterator();
-        Pair p1 = it.next();
-        Pair p2 = it.next();
-        return new TwoPairs(p1, p2);
     }
 
     public Optional<ThreeOfAKind> threeOfAKind() {
@@ -133,6 +106,15 @@ public class Roll {
 
 
 
+    private static TwoPairs twoPairs0(Set<Pair> pairs) {
+        if(pairs.size() != 2) throw new AssertionError(
+            "Should only be passed 2 pairs, was: " + pairs
+        );
+        Iterator<Pair> it = pairs.iterator();
+        Pair p1 = it.next();
+        Pair p2 = it.next();
+        return new TwoPairs(p1, p2);
+    }
 
     private Stream<Pair> pairs() {
         return entriesOccuringAtLeast( 2L)
@@ -149,6 +131,23 @@ public class Roll {
         return countPerRoll.entrySet().stream().filter(
             e -> e.getValue() >= frequencyThreshold
         );
+    }
+
+    private IntStream diceRolls() {
+        return IntStream.of(d1, d2, d3, d4, d5);
+    }
+
+
+
+
+    private void validate() {
+        diceRolls().forEach(this::validate);
+    }
+
+    private void validate(int dieRoll) {
+        if(dieRoll<1 || dieRoll>6) throw new IllegalArgumentException(String.format(
+            "Expected parameter dieRoll in [1,6], was %d", dieRoll
+        ));
     }
 
 }
