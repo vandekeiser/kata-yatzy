@@ -3,7 +3,7 @@ package fr.cla.kata.yatzy;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-public abstract class RepeatHand {
+abstract class RepeatHand {
 
     private final int repeat;
     private final int height;

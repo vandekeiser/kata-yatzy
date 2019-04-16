@@ -5,7 +5,7 @@ import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 
-public class TwoPairs {
+class TwoPairs {
 
     private final Pair p1, p2;
 
