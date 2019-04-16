@@ -8,6 +8,9 @@ import java.util.stream.Stream;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
+/**
+ * A Yatzy roll of the 5 dice (the order if the dice doesn't matter).
+ */
 public class Roll {
     private final int d1, d2, d3, d4, d5;
 
@@ -61,12 +64,11 @@ public class Roll {
     }
 
     public Optional<TwoPairs> twoPairs() {
-        Stream<Pair> pairs = pairs();
-        Set<Pair> pairs2 = pairs.collect(toSet());
-        switch (pairs2.size()){
+        Set<Pair> pairs = pairs().collect(toSet());
+        switch (pairs.size()){
             case 0: return Optional.empty();
             case 1: return Optional.empty();
-            case 2: return Optional.of(twoPairs0(pairs2));
+            case 2: return Optional.of(twoPairs0(pairs));
             default: throw new AssertionError(String.format(
                 "There were %d pairs in the roll! (shouldn't ever be > 2)"
             ));
@@ -129,6 +131,10 @@ public class Roll {
             &&
             !threeOfAKind().isEmpty()
         ;
+    }
+
+    public int weightedCount(int dieRoll) {
+        return dieRoll * count(dieRoll);
     }
 
     @Override
