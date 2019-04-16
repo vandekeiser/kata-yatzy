@@ -2,16 +2,15 @@ package fr.cla.kata.yatzy.test;
 
 import fr.cla.kata.yatzy.Category;
 import fr.cla.kata.yatzy.Roll;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CategoryTest {
 
     @Test
     public void chance_category_should_score_roll_to_the_sum_of_all_dice() {
-        Assert.assertEquals(15, Category.CHANCE.score(Roll.roll(2,3,4,5,1)));
+        assertEquals(15, Category.CHANCE.score(Roll.roll(2,3,4,5,1)));
         assertEquals(16, Category.CHANCE.score(Roll.roll(3,3,4,5,1)));
     }
 

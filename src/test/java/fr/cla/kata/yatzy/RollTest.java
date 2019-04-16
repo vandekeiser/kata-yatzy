@@ -1,17 +1,17 @@
 package fr.cla.kata.yatzy;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RollTest {
 
     @Test
     public void sumOfAllDice() {
-        Assert.assertEquals(15, Roll.roll(2,3,4,5,1).sumOfAllDice());
+        assertEquals(15, Roll.roll(2,3,4,5,1).sumOfAllDice());
     }
 
     @Test
