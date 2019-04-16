@@ -86,28 +86,14 @@ public class Roll {
     }
 
     public Optional<ThreeOfAKind> threeOfAKind() {
-        Map<Integer, Long> countPerRoll = diceRolls().boxed().collect(groupingBy(
-            Function.identity(),
-            counting()
-        ));
-        Stream<Map.Entry<Integer, Long>> countPerRollEntries = countPerRoll.entrySet().stream();
-
-        return countPerRollEntries
-            .filter(e -> e.getValue() >= 3L)
+        return entriesOccuringAtLeast( 3L)
             .map(e -> new ThreeOfAKind(e.getKey()))
             .findAny()
         ;
     }
 
     public Optional<FourOfAKind> fourOfAKind() {
-        Map<Integer, Long> countPerRoll = diceRolls().boxed().collect(groupingBy(
-            Function.identity(),
-            counting()
-        ));
-        Stream<Map.Entry<Integer, Long>> countPerRollEntries = countPerRoll.entrySet().stream();
-
-        return countPerRollEntries
-            .filter(e -> e.getValue() >= 4L)
+        return entriesOccuringAtLeast( 4L)
             .map(e -> new FourOfAKind(e.getKey()))
             .findAny()
         ;
@@ -149,16 +135,20 @@ public class Roll {
 
 
     private Stream<Pair> pairs() {
+        return entriesOccuringAtLeast( 2L)
+            .map(e -> new Pair(e.getKey()))
+        ;
+    }
+
+    private Stream<Map.Entry<Integer, Long>> entriesOccuringAtLeast(long frequencyThreshold) {
         Map<Integer, Long> countPerRoll = diceRolls().boxed().collect(groupingBy(
             Function.identity(),
             counting()
         ));
-        Stream<Map.Entry<Integer, Long>> countPerRollEntries = countPerRoll.entrySet().stream();
 
-        return countPerRollEntries
-            .filter(e -> e.getValue() >= 2L)
-            .map(e -> new Pair(e.getKey()))
-        ;
+        return countPerRoll.entrySet().stream().filter(
+            e -> e.getValue() >= frequencyThreshold
+        );
     }
 
 }
