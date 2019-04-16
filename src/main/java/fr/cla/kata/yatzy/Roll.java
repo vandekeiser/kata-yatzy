@@ -46,7 +46,8 @@ public class Roll {
             case 1: return Optional.empty();
             case 2: return Optional.of(twoPairs0(pairs));
             default: throw new AssertionError(String.format(
-                "There were %d pairs in the roll! (shouldn't ever be > 2)"
+                "There were %d pairs in the roll! (shouldn't ever be > 2)",
+                pairs.size()
             ));
         }
     }
