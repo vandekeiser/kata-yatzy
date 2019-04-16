@@ -9,7 +9,7 @@ import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
 /**
- * A Yatzy roll of the 5 dice (the order if the dice doesn't matter).
+ * A Yatzy roll of the 5 dice (the order of the dice doesn't matter).
  */
 public class Roll {
     private final int d1, d2, d3, d4, d5;
