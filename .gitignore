@@ -1,0 +1,14 @@
+#IJ
+.idea/*
+*.iml
+
+#Maven
+**/target/**
+
+*.txt
+
+*.attach_pid*
+
+**/lib/*
+
+.jqwik-database
